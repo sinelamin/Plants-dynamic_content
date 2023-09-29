@@ -128,6 +128,57 @@ function changeStatusBtns(e, item, index) {
 //--------------------------------------------------------------------------------------
 
 
+//Service create cards JS
+//--------------------------------------------------------------------------------------
+
+const serviceCardsBlock = document.querySelector('.service-body');
+let newCard;
+let newCardImg;
+let newCardTitle;
+let newCardDescr;
+
+function createCards(data) {
+  for (let i = 0; i < data.length; i += 1) {
+    newCard = document.createElement('div');
+    newCardImg = document.createElement('img');
+    newCardTitle = document.createElement('h5');
+    newCardDescr = document.createElement('p');
+
+
+    newCard.className = 'service-card';
+    newCardImg.className = 'service-card__img';
+    newCardTitle.className = 'service-card__title';
+    newCardDescr.className = 'service-card__decriptione';
+
+    serviceCardsBlock.append(newCard);
+    newCard.append(newCardImg);
+    newCard.append(newCardTitle);
+    newCard.append(newCardDescr);
+
+    newCardImg.src = data[i]['img'];
+    newCardTitle.innerText = data[i]['title'];
+    newCardDescr.innerText = data[i]['descr'];
+  }
+}
+
+const getServiceCard = (data) => {
+  createCards(data);
+};
+
+
+async function getServiceJson() {
+  const service = 'data.json';
+  const res = await fetch(service);
+  const data = await res.json();
+  getServiceCard(data);
+}
+
+getServiceJson();
+
+
+//--------------------------------------------------------------------------------------
+
+
 
 //Ptices Accordion
 //--------------------------------------------------------------------------------------
