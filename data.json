@@ -2,37 +2,37 @@
   {
     "service": "gardens",
     "img": "./assets/service-card-1.png",
-    "title": "Garden care1",
+    "title": "Garden care",
     "descr": "Lorem Ipsum has been the industry"
   },
   {
     "service": "planting",
     "img": "./assets/service-card-2.png",
-    "title": "Garden care2",
+    "title": "Planting",
     "descr": "Lorem Ipsum has been the industry"
   },
   {
     "service": "lawn",
     "img": "./assets/service-card-3.png",
-    "title": "Garden care3",
+    "title": "Lawn care",
     "descr": "Lorem Ipsum has been the industry"
   },
   {
     "service": "planting",
     "img": "./assets/service-card-4.png",
-    "title": "Garden care4",
+    "title": "Planting",
     "descr": "Lorem Ipsum has been the industry"
   },
   {
     "service": "gardens",
     "img": "./assets/service-card-5.png",
-    "title": "Garden care5",
+    "title": "Garden care",
     "descr": "Lorem Ipsum has been the industry"
   },
   {
     "service": "planting",
     "img": "./assets/service-card-6.png",
-    "title": "Garden care6",
+    "title": "Planting",
     "descr": "Lorem Ipsum has been the industry"
   }
 ]

@@ -302,6 +302,10 @@ a {
   object-fit: cover;
 }
 
+.xxxx {
+  display: none;
+}
+
 .service-card__title {
   margin: 0 0 10px 0;
   color: #E06733;
