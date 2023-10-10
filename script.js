@@ -1,5 +1,7 @@
 'use strict';
 
+import { data } from './dataService.js';
+
 // burger menu
 //--------------------------------------------------------------------------------------
 
@@ -56,48 +58,66 @@ function hideBurger() {
 //--------------------------------------------------------------------------------------
 
 
+//Service create cards JS
+//--------------------------------------------------------------------------------------
+
+const serviceCardsBlock = document.querySelector('.service-body');
+
+function createCards(service) {
+  const newCard = document.createElement('div');
+  const newCardImg = document.createElement('img');
+  const newCardTitle = document.createElement('h5');
+  const newCardDescr = document.createElement('p');
+
+  newCard.classList.add('service-card');
+  newCardImg.classList.add('service-card__img');
+  newCardTitle.classList.add('service-card__title');
+  newCardDescr.classList.add('service-card__decriptione');
+
+  newCard.append(newCardImg);
+  newCard.append(newCardTitle);
+  newCard.append(newCardDescr);
+
+  newCard.dataset.service = service.service;
+  newCardImg.src = service.img;
+  newCardTitle.innerText = service.title;
+  newCardDescr.innerText = service.descr;
+
+  return newCard;
+}
+
+
+function getServiceCard(data) {
+  data.forEach(service => {
+    const card = createCards(service);
+    serviceCardsBlock.append(card);
+  });
+};
+
+getServiceCard(data);
+
+//--------------------------------------------------------------------------------------
+
 
 
 //Service filter
 //--------------------------------------------------------------------------------------
 
 const servicesBtns = document.querySelectorAll('.service-filter__btn');
-const servicesCrads = document.querySelectorAll('.service-card');
-
+const cards = document.querySelectorAll('.service-card');
 let statusServiceBtns = [false, false, false];
-let statusServiceCards = [false, false, false, false, false, false];
+let arrDataAttribute = [];
+
 
 servicesBtns.forEach((item, index) => {
   item.addEventListener('click', e => {
     changeStatusBtns(e, item, index);
     resetStatusBtns(item, index);
-    checkServiceBtns();
-    changeServiceCards();
+    getArrDataAttribute(statusServiceBtns, servicesBtns);
+    changeServiceCards(cards, arrDataAttribute);
   });
 });
 
-function checkServiceBtns() {
-  statusServiceCards[0] = statusServiceCards[4] = statusServiceBtns[0];
-  statusServiceCards[2] = statusServiceBtns[1];
-  statusServiceCards[1] = statusServiceCards[3] = statusServiceCards[5] = statusServiceBtns[2];
-}
-
-function changeServiceCards() {
-  statusServiceCards.forEach((item, index) => {
-    if (item) {
-      servicesCrads[index].classList.remove('card__out--focus');
-    } else {
-      servicesCrads[index].classList.add('card__out--focus');
-    }
-  });
-
-  let counter = statusServiceCards.filter(item => item).length;
-  if (counter == 0) {
-    servicesCrads.forEach(item => {
-      item.classList.remove('card__out--focus');
-    });
-  }
-}
 
 function resetStatusBtns(item, index) {
   let value = statusServiceBtns.filter(elem => elem);
@@ -105,7 +125,6 @@ function resetStatusBtns(item, index) {
   if (value.length > 2) {
     servicesBtns.forEach((btn, i) => {
       btn.classList.remove('service-filter__btn--active');
-
       if (i !== index) {
         statusServiceBtns[i] = false;
       }
@@ -122,6 +141,35 @@ function changeStatusBtns(e, item, index) {
   } else {
     item.classList.add('service-filter__btn--active');
     statusServiceBtns[index] = true;
+  }
+}
+
+
+function getArrDataAttribute(statusServiceBtns, servicesBtns) {
+  arrDataAttribute = [];
+  statusServiceBtns.forEach((item, index) => {
+    if (item) {
+      arrDataAttribute.push(servicesBtns[index].dataset.btn);
+    }
+  });
+}
+
+
+function changeServiceCards(cards, arrDataAttribute) {
+  let counter = statusServiceBtns.filter(item => item).length;
+
+  cards.forEach(card => {
+    if (!arrDataAttribute.includes(card.dataset.service)) {
+      card.classList.add('card__out--focus');
+    } else {
+      card.classList.remove('card__out--focus');
+    }
+  });
+
+  if (counter == 0) {
+    cards.forEach(card => {
+      card.classList.remove('card__out--focus');
+    });
   }
 }
 
