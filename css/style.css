@@ -18,6 +18,10 @@ body::-webkit-scrollbar {
   width: 0px;
 }
 
+.body-menu--active {
+  overflow: hidden;
+}
+
 ul {
   list-style: none;
   padding-left: 0;
@@ -36,6 +40,10 @@ a {
   left: 0;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overla--active {
+  display: block;
 }
 
 .container {
@@ -228,6 +236,7 @@ a {
 }
 
 .service {
+  position: relative;
   background-color: #EDF2EC;
   padding-bottom: 121px;
   margin-bottom: 40px;
@@ -288,6 +297,12 @@ a {
   border-radius: 20px;
   border: 1px solid #E3E1D5;
   text-align: center;
+  transition: all .5s;
+}
+
+.service-card:hover {
+  border: 1px solid #E06733;
+  cursor: pointer;
 }
 
 .card__out--focus {
@@ -316,6 +331,78 @@ a {
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
+}
+
+.service-popup {
+  position: fixed;
+  display: none;
+  z-index: 3;
+  left: 50%;
+  top: 50%;
+  padding: 15px;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  background-color: #EDF2EC;
+  border: 1px solid #000;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.service-popup--active {
+  display: block;
+}
+
+.service-popup__img {
+  display: block;
+  margin: 0 auto;
+  margin-top: 5%;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 1 / 1;
+  width: 60%;
+  height: 50%;
+}
+
+.service-popup__title {
+  color: #E06733;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.service-popup__btn {
+  position: absolute;
+  top: -7%;
+  left: 100%;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background-color: #EDF2EC;
+  transform: rotateZ(0deg);
+  transition: transform .5s;
+}
+
+.service-popup__btn:hover {
+  cursor: pointer;
+  transform: rotateZ(90deg);
+  transition: transform .5s;
+  border: 1px solid #E06733;
+}
+
+.service-popup__line {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background-color: #000;
+}
+
+.service-popup__line:first-child {
+  transform: translate(4px) rotateZ(45deg);
+}
+.service-popup__line:last-child {
+  transform: translate(4px) rotateZ(-45deg);
 }
 
 .prices {
@@ -676,6 +763,10 @@ a {
     grid-template-columns: repeat(3, 280px);
     gap: 55px 6%;
   }
+
+  .service-popup {
+    width: 70%;
+  }
 }
 
 @media (max-width: 1050px) {
@@ -921,6 +1012,14 @@ a {
     grid-template-columns: repeat(1, 280px);
   }
 
+  .service-popup {
+    width: 70%;
+  }
+
+  .service-popup__img {
+    width: 80%;
+  }
+
   .prices__title {
     font-size: 25px;
   }
@@ -995,14 +1094,6 @@ a {
     padding: 26px 20px;
     width: 100%;
     background-color: rgba(234, 229, 229, 0.5);
-  }
-
-  .overla--active {
-    display: block;
-  }
-
-  .body-menu--active {
-    overflow: hidden;
   }
 
   .menu {
@@ -1097,6 +1188,14 @@ a {
 @media (max-width: 380px) {
   .container {
     max-width: 370px;
+  }
+
+  .service-popup__title {
+    font-size: 16px;
+  }
+
+  .service-popup__description {
+    font-size: 14px;
   }
 
   .prices-accourdion__details {
