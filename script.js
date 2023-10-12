@@ -18,8 +18,10 @@ burger.addEventListener('click', e => {
   e.preventDefault();
   menuList.classList.toggle('menu--active');
   body.classList.toggle('body-menu--active');
-  overlay.style.height = document.documentElement.scrollHeight + 'px';
-  overlay.classList.toggle('overla--active');
+  if (document.documentElement.scrollWidth < 550) {
+    overlay.style.height = document.documentElement.scrollHeight + 'px';
+    overlay.classList.toggle('overla--active');
+  }
   logo.classList.toggle('header-logo--active');
   burgerLine.forEach(item => {
     item.classList.toggle('burger-line--active');
@@ -48,7 +50,9 @@ menuLink.forEach(item => {
 function hideBurger() {
   menuList.classList.remove('menu--active');
   body.classList.remove('body-menu--active');
-  overlay.classList.toggle('overla--active');
+  if (document.documentElement.scrollWidth < 550) {
+    overlay.classList.toggle('overla--active');
+  }
   logo.classList.toggle('header-logo--active');
   burgerLine.forEach(item => {
     item.classList.remove('burger-line--active');
