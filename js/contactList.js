@@ -62,6 +62,7 @@ function fillOutCard(item, obj) {
     if (key == item.dataset.city) {
       for (let i = 0; i < obj[key].length; i += 1) {
         cardValue[i].textContent = obj[key][i];
+        adressHeader.textContent = obj[key][0];
       }
     }
   }
