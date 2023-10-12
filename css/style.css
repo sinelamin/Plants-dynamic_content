@@ -307,6 +307,7 @@ a {
 
 .card__out--focus {
   filter: blur(2px);
+  pointer-events: none;
 }
 
 .service-card__img {
